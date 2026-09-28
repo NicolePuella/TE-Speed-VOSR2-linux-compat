@@ -9,13 +9,12 @@
 * 作者编译成 `.pyd` 的四块（`nodes` / `settings` / `inference` / `model_store`）是 Windows PE，
   Linux 无法加载，本文件用 Python 重新实现了它们的功能（节点层见 `__init__.py`）。
 
-与作者实现的已知差异（写在明面上，不假装等价）
+与作者实现的已知差异
 ----------------------------------------------
 * `quality_profile` / `tile_strategy` / `memory_policy` 只是调节分块与批大小，不改变数学结果。
 * `torch_compile` 需要 triton；不可用时跳过（与作者行为一致，日志会说明）。
 * 视频的 `temporal_cache` 是"相邻帧 DINOv2 特征复用"的近似实现，阈值/刷新按作者控件的语义。
 * 引擎张量不受 ComfyUI 显存管理器调度，所以加载前会主动卸载 ComfyUI 已缓存的模型
-  （这也正是用户提示"不要同时跑两个工作流"的原因）。
 """
 
 import gc
