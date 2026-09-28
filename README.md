@@ -89,7 +89,7 @@ curl -X POST http://HOST:8188/te_speed_vosr2/free    # GET 同样可用，返回
 注意 ComfyUI 自带的 `POST /free {"unload_models": true}` **释放不动引擎占的显存**，别指望它。
 再次用 VOSR2 时会重新加载引擎（约 95 秒）。
 
-## 与作者实现的已知差异（写在明面上，不假装等价）
+## 与作者实现的已知差异
 
 - 作者的「speed/manual 档位、显存调度、DiT 瓦片批处理」是**性能优化**；这里只保留**数学等价**的分块与批处理，
   没有复刻他的全部加速策略，所以速度可能比 Windows 版慢一些。
